@@ -40,13 +40,26 @@ export default function CreatePostPage() {
       <form onSubmit={handleSubmit} className="space-y-4">
 
         {/* TITLE */}
-        <input
-          name="title"
-          value={form.title}
-          onChange={handleChange}
-          placeholder="Title"
-          className="w-full border p-2 rounded"
-        />
+        <div className="flex gap-2 items-center">
+
+  {/* TITLE INPUT */}
+  <input
+    name="title"
+    value={form.title}
+    onChange={handleChange}
+    placeholder="Title"
+    className="flex-1 border p-2 rounded"
+  />
+
+  {/* BUTTON */}
+  <button
+    type="button"
+    className="bg-green-600 text-white px-4 py-2 rounded whitespace-nowrap"
+  >
+    Generate By AI
+  </button>
+
+</div>
 
         {/* CONTENT */}
         <textarea
