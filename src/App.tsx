@@ -4,6 +4,7 @@ import PostsPage from './pages/PostsPage';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage';
 import SignupPage from './pages/SignupPage';
+import CreatePostPage from './pages/CreatePostPage';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         {/* Main Layout wrapper for pages with Navbar/Footer */}
         <Route path="/" element={<Layout />}>
           <Route index element={<PostsPage />} />
+          <Route path='create' element={<CreatePostPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />
