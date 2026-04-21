@@ -15,3 +15,8 @@ export const loginUser = async (formData: any): Promise<AuthResponse> => {
   const response = await api.post(`${API_URL}/login`, formData);
   return response.data;
 };
+
+export const getMe = async () => {
+  const response = await api.get(`${API_URL}`);
+  return response.data;
+};

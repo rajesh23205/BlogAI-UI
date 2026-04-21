@@ -8,6 +8,7 @@ export default function Layout() {
           <Link to="/" className="text-xl font-bold text-blue-600">AI Blog npm run dev</Link>
           <div className="space-x-4">
             <Link to="/" className="hover:text-blue-600">Posts</Link>
+            <Link to="/profile" className="hover:text-blue-600">Profile</Link>
             <Link to="/login" className="hover:text-blue-600">Login</Link>
             <Link to="/signup" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Sign Up</Link>
           </div>
