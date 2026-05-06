@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCreatePost } from "../hooks/useCreatePost";
+import { useGetAiPost } from "../hooks/useGetAiPost";
 
 export default function CreatePostPage() {
   const navigate = useNavigate();
   const { mutate: create, isPending } = useCreatePost();
+  const { mutateAsync: generateAiPost, isPending: aiPostPending } = useGetAiPost();
 
   const [form, setForm] = useState({
     title: "",
@@ -28,6 +30,15 @@ export default function CreatePostPage() {
         navigate("/posts"); // redirect after create
       },
     });
+  };
+
+  const handleGenerate = async () => {
+    try {
+      const data = await generateAiPost(form.title);
+      console.log("AI response:", data);
+    } catch (error) {
+      console.error("Error generating AI post:", error);
+    }
   };
 
   return (
@@ -55,11 +66,15 @@ export default function CreatePostPage() {
   <button
     type="button"
     className="bg-green-600 text-white px-4 py-2 rounded whitespace-nowrap"
+    onClick={handleGenerate}
   >
     Generate By AI
   </button>
 
 </div>
+
+{aiPostPending && <div>Loading</div>}
+{!aiPostPending && <div>Loading</div>}
 
         {/* CONTENT */}
         <textarea
