@@ -2,12 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCreatePost } from "../hooks/useCreatePost";
 import { useGetAiPost } from "../hooks/useGetAiPost";
+import AIPostContent from "../components/AIPostContent/AIPostContent";
 
 export default function CreatePostPage() {
   const navigate = useNavigate();
   const { mutate: create, isPending } = useCreatePost();
   const { mutateAsync: generateAiPost, isPending: aiPostPending } = useGetAiPost();
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [aiData, setAiData] = useState<any>(null);
   const [form, setForm] = useState({
     title: "",
     content: "",
@@ -32,10 +34,13 @@ export default function CreatePostPage() {
     });
   };
 
+  console.log('aiPostPending', aiPostPending);
+
   const handleGenerate = async () => {
     try {
-      const data = await generateAiPost(form.title);
-      console.log("AI response:", data);
+      const response = await generateAiPost(form.title);
+      console.log("AI response:", response);
+      setAiData(response);
     } catch (error) {
       console.error("Error generating AI post:", error);
     }
@@ -74,7 +79,7 @@ export default function CreatePostPage() {
 </div>
 
 {aiPostPending && <div>Loading</div>}
-{!aiPostPending && <div>Loading</div>}
+{aiData && !aiPostPending && <AIPostContent AIPostData={aiData.data} />}
 
         {/* CONTENT */}
         <textarea
