@@ -82,21 +82,29 @@ export default function CreatePostPage() {
 {aiData && !aiPostPending && <AIPostContent AIPostData={aiData.data} />}
 
         {/* CONTENT */}
-        <textarea
+{!aiPostPending && <>
+{!aiData &&  <textarea
           name="content"
           value={form.content}
           onChange={handleChange}
           placeholder="Content"
           className="w-full border p-2 rounded"
-        />
+        />}
 
         {/* BUTTON */}
         <button
           disabled={isPending}
           className="bg-blue-600 text-white px-4 py-2 rounded w-full"
         >
+          {aiData && "Edit"}
+        </button>
+        <button
+          disabled={isPending}
+          className="bg-blue-600 text-white px-4 py-2 rounded w-full"
+        >
           {isPending ? "Creating..." : "Create Post"}
         </button>
+</>}
 
       </form>
     </div>
