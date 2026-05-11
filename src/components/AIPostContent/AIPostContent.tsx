@@ -3,19 +3,22 @@ import './AIPostContent.scss'
 
 interface Props {
   AIPostData: {
-    title: string;
-    introduction: string;
-    sections: {
-      heading:string;
-      content: string;
-      points: [];
-      subsections:{
-        title: string;
-        content: string;
-        points:[]
-      }[];
-    }[];
-    conclusion: string;
+    title: string,
+    introduction: string,
+    sections: [
+      {
+        heading: string,
+        paragraph: string,
+        subsections: [
+          {
+            subheading: string,
+            paragraph: string
+          }
+        ],
+        points: []
+      }
+    ],
+    conclusion: string
   };
 }
 
@@ -30,27 +33,20 @@ export default function AIPostContent({ AIPostData }: Props) {
         <div className="section" key={index}>
           <h2>{section.heading}</h2>
   
-          <p>{section.content}</p>
+          <p>{section.paragraph}</p>
+  
+          {section.subsections.map((point, i) => (
+            <div className="subsection" key={i}>
+              <h3>{point.subheading}</h3>
+              <p>{point.paragraph}</p>
+            </div>
+          ))}
   
           <ul>
             {section.points.map((point, i) => (
               <li key={i}>{point}</li>
             ))}
           </ul>
-  
-          {section.subsections.map((sub, i) => (
-            <div className="subsection" key={i}>
-              <h3>{sub.title}</h3>
-  
-              <p>{sub.content}</p>
-  
-              <ul>
-                {sub.points.map((point, j) => (
-                  <li key={j}>{point}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
         </div>
       ))}
   

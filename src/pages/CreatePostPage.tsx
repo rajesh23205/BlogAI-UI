@@ -92,12 +92,10 @@ export default function CreatePostPage() {
         />}
 
         {/* BUTTON */}
-        <button
+        {/* {aiData && <button
           disabled={isPending}
           className="bg-blue-600 text-white px-4 py-2 rounded w-full"
-        >
-          {aiData && "Edit"}
-        </button>
+        >Edit</button>} */}
         <button
           disabled={isPending}
           className="bg-blue-600 text-white px-4 py-2 rounded w-full"
